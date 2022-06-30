@@ -7,16 +7,37 @@ function leDados() {
     else {
         objDados = {
             servicos: [
-                // { id: "1", nome: "Vale refeição", tipo: "Cupom", quantidade: "100", local: "rua da minha casa", descricao: "Vale um almoço grátis, desde que o prato pedido esteja dentre os pratos do dia" }
+                { id: "1", nome: "Vale Almoço", tipo: "Cupom", quantidade: "10", local: "Praça Da Liberdade", descricao: "Vale um almoço grátis, caso eu passe em TIAW" }
             ]
         }
     }
     return objDados;
 }
 
+function leCupons() {
+    let strCupons = localStorage.getItem('db');
+    let objCupons = {};
+    if (strCupons) {
+        objCupons = JSON.parse(strCupons);
+    }
+    else {
+        objCupons = {
+            servicos: [
+                // { id: "1", nome: "Vale Almoço", tipo: "Cupom", quantidade: "10", local: "Praça Da Liberdade", descricao: "Vale um almoço grátis, caso eu passe em TIAW" }
+            ]
+        }
+    }
+    return objCupons;
+}
+
 function salvaDados(dados) {
     localStorage.setItem('db', JSON.stringify(dados))
 }
+
+function salvaCupons(dados) {
+    localStorage.setItem('dbCupons', JSON.stringify(dados))
+}
+
 function incluirServico() {
     if (document.getElementById('inputNome').value != ''
         && document.getElementById('inputTipo').value != ''
@@ -89,6 +110,7 @@ function imprimeDados() {
             ;
     }
     document.getElementById('table-servicos').innerHTML = itens;
+
 }
 
 //botoes
