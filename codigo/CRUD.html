@@ -1,117 +1,161 @@
-function leDados() {
-    let strDados = localStorage.getItem('db');
-    let objDados = {};
-    if (strDados) {
-        objDados = JSON.parse(strDados);
-    }
-    else {
-        objDados = {
-            servicos: [
-                { id: "1", nome: "Vale Almoço", tipo: "Cupom", quantidade: "10", local: "Praça Da Liberdade", descricao: "Vale um almoço grátis, caso eu passe em TIAW" }
-            ]
-        }
-    }
-    return objDados;
-}
+<!DOCTYPE html>
+<html lang="en">
 
-function leCupons() {
-    let strCupons = localStorage.getItem('db');
-    let objCupons = {};
-    if (strCupons) {
-        objCupons = JSON.parse(strCupons);
-    }
-    else {
-        objCupons = {
-            servicos: [
-                // { id: "1", nome: "Vale Almoço", tipo: "Cupom", quantidade: "10", local: "Praça Da Liberdade", descricao: "Vale um almoço grátis, caso eu passe em TIAW" }
-            ]
-        }
-    }
-    return objCupons;
-}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CRUD (ADMIN ONLY)</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="PgCadastro.css">
+</head>
 
-function salvaDados(dados) {
-    localStorage.setItem('db', JSON.stringify(dados))
-}
 
-function salvaCupons(dados) {
-    localStorage.setItem('dbCupons', JSON.stringify(dados))
-}
+<body>
 
-function incluirServico() {
-    if (document.getElementById('inputNome').value != ''
-        && document.getElementById('inputTipo').value != ''
-        && document.getElementById('inputQntd').value != ''
-        && document.getElementById('inputLocal').value != '') {
+    <form id="form-alterar" role="aria-hidden" action="javascript:void(0);" method="POST" id="saveEdit">
+        <div class="form-group row">
+            <div class="col-sm-6">
+                <label for="inputNome">Nome</label>
+                <input type="text" class="form-control" id="inputNome" required placeholder="Informe o nome do serviço">
+            </div>
+            <div class="col-sm-6">
+                <label for="inputTipo">Tipo</label>
+                <input type="text" class="form-control" id="inputTipo" required placeholder="Informe o tipo do serviço">
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-6">
+                <label for="inputQntd">Quantidade</label>
+                <input type="text" class="form-control" id="inputQntd" required
+                    placeholder="Informe a quantidade e itens">
+            </div>
+            <div class="col-sm-6">
+                <label for="inputLocal">Endereço</label>
+                <input type="text" class="form-control" id="inputLocal" required
+                    laceholder="Informe e local onde o serviço pode ser usado">
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-12">
+                <label for="inputDescricao">Descrição</label>
+                <input type="text" class="form-control" id="inputDescricao"
+                    placeholder="Escreva uma descrição para o evento">
+            </div>
+        </div>
+        <button class="btn btn-secondary btn2" onclick="updateServico(this)">(Confirmar alteração)</button>
+        <button><a onclick="FechaAlteracao()" aria-label="Close">&#10006;</a></button>
+    </form>
 
-        alert('Serviço Cadastrado com sucesso!');
-        //ler dados ls
+    <div class="form-group row">
+        <div class="col-sm-11 Novo-Cadastro">
+            <a href="PgCadastro.html"><input type="button" class=" btn-success" id="btnInsert"
+                    value="Novo Cadastro"></a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Tipo</th>
+                        <th scope="col">Quantidade</th>
+                        <th scope="col">Endereço</th>
+                        <th scope="col">Descrição</th>
+                        <th scope="col">Ação</th>
+                        <th scope="col">Ação</th>
+                    </tr>
+                </thead>
+                <tbody id="table-servicos">
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    </div>
+
+    <script src="CRUD.js"></script>
+
+    <script>
+
+        var itens = '';
         let objDados = leDados();
-        let strId = nextID();
-
-        //incluir
-        let strDescricao;
-        let strNome = document.getElementById('inputNome').value;
-        let strTipo = document.getElementById('inputTipo').value;
-        let strQntd = document.getElementById('inputQntd').value;
-        let strLocal = document.getElementById('inputLocal').value;
-        if(document.getElementById('inputDescricao').value != ''){
-            strDescricao = document.getElementById('inputDescricao').value;
-        }else{
-            strDescricao = "Não tem descrição";
-        }
-       
-
-        let novoServico = {
-            id: strId,
-            nome: strNome,
-            tipo: strTipo,
-            quantidade: strQntd,
-            local: strLocal,
-            descricao: strDescricao
-        };
-
-
-        objDados.servicos.push(novoServico);
-
-        //salvar no ls
-        salvaDados(objDados);
-        window.location.replace("CRUD.html");
-    } else {
-        alert("Preencha os campos corretamente!");
-    }
-}
-function nextID(){
-    let count = 0;
-    let num;
-    let objDados= leDados();
-    for (i = 0; i < objDados.servicos.length; i++) {
-        count ++;
-    }
-    if (count != 0){
-        num =  objDados.servicos[count-1].id;
-        count = num + 1;
-    }
-    return count;
-}
-function imprimeDados() {
-    var itens = '';
-    let objDados = leDados();
-    for (i = 0; i < objDados.servicos.length; i++) {
-     itens += `<tr><td>${objDados.servicos[i].id}</td>
+        for (i = 0; i < objDados.servicos.length; i++) {
+            itens += `<tr><td>${objDados.servicos[i].id}</td>
             <td>${objDados.servicos[i].nome}</td>
             <td>${objDados.servicos[i].tipo} </td>
             <td>${objDados.servicos[i].quantidade}</td>
             <td>${objDados.servicos[i].local} </td>
             <td>${objDados.servicos[i].descricao}</td>
             <td><button class="btn btn-secondary" onclick="AlteraServico(this)">Alterar</button></td>
+
             <td><button id="btnDelete"   onclick="deleteServico(this)" class="btn btn-danger">Excluir</button></td> 
             </tr>`
-            ;
-    }
-    document.getElementById('table-servicos').innerHTML = itens;
+                ;
+        }
+        document.getElementById('table-servicos').innerHTML = itens;
 
-}
+        function FechaAlteracao() {
+            document.getElementById('form-alterar').style.display = 'none';
+        }
 
-//botoes
-document.getElementById('btnFin').addEventListener('click', incluirServico);
+        function AlteraServico(item) {
+            window.numr = item.closest('tr').rowIndex;
+            var nome1 = document.getElementById('inputNome');
+            var tipo1 = document.getElementById('inputTipo');
+            var qntd1 = document.getElementById('inputQntd');
+            var local1 = document.getElementById('inputLocal');
+            var descricao1 = document.getElementById('inputDescricao');
+
+            nome1.value = objDados.servicos[numr - 1].nome;
+            tipo1.value = objDados.servicos[numr - 1].tipo;
+            qntd1.value = objDados.servicos[numr - 1].quantidade;
+            local1.value = objDados.servicos[numr - 1].local;
+            descricao1.value = objDados.servicos[numr - 1].descricao;
+            document.getElementById('form-alterar').style.display = 'block';
+        }
+
+        function updateServico(item) {
+            const itemIndex = numr;
+            const nomeatt = document.getElementById('inputNome').value;
+            const tipoatt = document.getElementById('inputTipo').value;
+            const qntdatt = document.getElementById('inputQntd').value;
+            const localatt = document.getElementById('inputLocal').value;
+            const descricaoatt = document.getElementById('inputDescricao').value;
+
+            objDados.servicos[itemIndex - 1].nome = nomeatt;
+            objDados.servicos[itemIndex - 1].tipo = tipoatt;
+            objDados.servicos[itemIndex - 1].quantidade = qntdatt;
+            objDados.servicos[itemIndex - 1].local = localatt;
+            objDados.servicos[itemIndex - 1].descricao = descricaoatt;
+            console.log(nomeatt);
+            console.log(tipoatt);
+            console.log(qntdatt);
+            console.log(localatt);
+            console.log(descricaoatt);
+            console.log(objDados.servicos[itemIndex - 1].id);
+
+            salvaDados(objDados);
+            imprimeDados();
+        }
+
+        function deleteServico(item) {
+            const itemIndex = item.closest('tr').rowIndex;
+            objDados.servicos.splice(itemIndex - 1, 1);
+            salvaDados(objDados);
+            imprimeDados();
+
+        }
+    </script>
+</body>
