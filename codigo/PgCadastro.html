@@ -34,6 +34,14 @@
         </div>
         <section class="row">
             <form id="form-CadastroServiço" class="div4">
+                <div class="row" id="Seletores">
+                    <div class="col-12 " style="text-align: center;">
+                        <input type="button" class="btn btn-success mb-3" id="btnSelectAdm" value="Administrador"
+                            onclick="EscolheAdm()">
+                        <input type="button" class="btn btn-success mb-3" id="btnSelecitUser" value="Usuário"
+                            onclick="EscolheUser()">
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col-12 ">
                         <div class="form-floating mb-3">
@@ -74,13 +82,15 @@
                         <label class="inputext" for="floatingInput">Descrição</label>
                     </div>
                 </div>
-                <div class="row">
+                <dir class="row">
                     <div class="but">
                         <input type="button" class="btn btn-success" id="btnFin" value="Finalizar">
-                        <a href="CRUD.html"><input type="button" class="btn btn-entrar moscad" id="btnUpdate"
+                        <a href="CRUD.html"><input type="button" class="btn btn-entrar moscad hidden" id="btnUpdate"
                                 value="Mostrar Cadastros (admin)"></a>
+                        <a href="PgUsuário.html"><input type="button" class="btn btn-entrar moscad hidden" id="btnUser"
+                                value="Página Usuário"></a>
                     </div>
-                </div>
+                </dir>
             </form>
         </section>
     </div>
@@ -97,6 +107,17 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
         crossorigin="anonymous"></script>
+    <script src="jquery-3.6.0.min.js"></script>
+    <script>
+        function EscolheAdm(){
+           $("#Seletores").addClass("hidden");
+           $("#btnUpdate").removeClass("hidden").addClass("inline");
+        }
+        function EscolheUser(){
+           $("#Seletores").addClass("hidden");
+           $("#btnUser").removeClass("hidden").addClass("inline");
+        }
+    </script>
 </body>
 
 </html>
