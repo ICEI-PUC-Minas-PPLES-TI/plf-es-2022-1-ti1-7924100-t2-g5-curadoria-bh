@@ -7,6 +7,14 @@ body {
     background-color: #FDFFFC;
 }
 
+.hidden {
+    display: none;
+}
+
+.inline {
+    display: inline;
+}
+
 .navbar {
     background: #FF7518;
     min-height: 60px;
