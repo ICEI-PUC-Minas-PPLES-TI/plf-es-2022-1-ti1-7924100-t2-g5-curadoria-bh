@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Lista Cupons ( USER )</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="PgCadastro.css">
+</head>
+
+
+<body>
+    <div class="form-group row">
+        <div class="col-sm-11 Novo-Cadastro">
+            <a href="PgCadastro.html"><input type="button" class=" btn-success" id="btnInsert"
+                    value="Página de Cadastro"></a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Tipo</th>
+                        <th scope="col">Quantidade</th>
+                        <th scope="col">Endereço</th>
+                        <th scope="col">Descrição</th>
+                        <th scope="col">Ação</th>
+                    </tr>
+                </thead>
+                <tbody id="table-servicos">
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    </div>
+
+    <script src="CRUD.js"></script>
+    <script src="jquery-3.6.0.min.js"></script>
+
+    <script>
+
+        var itens = '';
+        let objCupons = leCupons();
+        for (i = 0; i < objCupons.servicos.length; i++) {
+            itens += `<tr>
+            <td>${objCupons.servicos[i].nome}</td>
+            <td>${objCupons.servicos[i].tipo} </td>
+            <td>${objCupons.servicos[i].quantidade}</td>
+            <td>${objCupons.servicos[i].local} </td>
+            <td>${objCupons.servicos[i].descricao}</td>
+            <td><button class="btn btn-danger" onclick="UsarCupom(this)">Usar cupom</button></td>
+            </tr>`
+                ;
+        }
+        document.getElementById('table-servicos').innerHTML = itens;
+
+        function imprimeCupons() {
+            var itens = '';
+            let objCupons = leCupons();
+            for (i = 0; i < objCupons.servicos.length; i++) {
+                itens += `<tr>
+            <td>${objCupons.servicos[i].nome}</td>
+            <td>${objCupons.servicos[i].tipo} </td>
+            <td>${objCupons.servicos[i].quantidade}</td>
+            <td>${objCupons.servicos[i].local} </td>
+            <td>${objCupons.servicos[i].descricao}</td>
+            <td><button class="btn btn-danger" onclick="UsarCupom(this)">Usar cupom</button></td>
+            </tr>`
+                    ;
+            }
+            document.getElementById('table-servicos').innerHTML = itens;
+
+        }
+
+        function UsarCupom(item) {
+            const itemIndex = item.closest('tr').rowIndex;
+            objCupons.servicos.splice(itemIndex - 1, 1);
+            salvaCupons(objCupons);
+            imprimeCupons();
+        }
+
+    </script>
+</body>
