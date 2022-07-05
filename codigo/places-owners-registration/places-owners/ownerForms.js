@@ -1,8 +1,3 @@
-// // todo gerar o jsonOwner
-// // todo salvar no localStorage o jsonOwner
-// todo modularizar para conseguir criar testes unitários
-// todo criar validações para os campos
-
 function getRadioValue() {
 	const radiosInput = document.getElementsByName("gender");
 	const checkedRadio = Array.from(radiosInput).find((radio) => radio.checked);
@@ -38,7 +33,7 @@ window.onload = () => {
 		console.log(owners);
 
 		window.location.replace(
-			"/codigo/places-owners-registration/placeForms.html"
+			"places-owners/placeForms.js"
 		);
 	};
 };

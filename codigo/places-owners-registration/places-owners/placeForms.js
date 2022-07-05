@@ -1,7 +1,21 @@
-// // todo gerar o jsonPlaces
-// // todo salvar o jsonPlaces no localStorage dentro do jsonOwner correspondente
-// todo modularizar para conseguir criar testes unitários
-// todo criar validações para os campos
+function getCheckboxValue() {
+	const checkboxes = document.querySelectorAll('input[type=checkbox]')
+	const checkedBox = Array.from(checkboxes).find((box) => box.checked);
+
+	if (checkedBox === undefined) {
+		return "";
+	}
+	return checkedBox.name;
+}
+
+function getDropdownValue() {
+	const dropdown = document.getElementById('dropdown')
+
+	if (dropdown.value === undefined) {
+		return "";
+	}
+	return dropdown.value;
+}
 
 window.onload = () => {
 	const owners = JSON.parse(localStorage.getItem("owners"));
@@ -19,6 +33,8 @@ window.onload = () => {
 			cnpj: cnpjInput.value,
 			phone: phoneInput.value,
 			address: addressInput.value,
+			type: getCheckboxValue(),
+			price: getDropdownValue()
 		};
 
 		lastOwner["place"] = jsonPlace;
