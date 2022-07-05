@@ -1,5 +1,5 @@
 function getCheckboxValue() {
-	const checkboxes = document.querySelectorAll('input[type=checkbox]')
+	const checkboxes = document.querySelectorAll("input[type=checkbox]");
 	const checkedBox = Array.from(checkboxes).find((box) => box.checked);
 
 	if (checkedBox === undefined) {
@@ -9,7 +9,7 @@ function getCheckboxValue() {
 }
 
 function getDropdownValue() {
-	const dropdown = document.getElementById('dropdown')
+	const dropdown = document.getElementById("dropdown");
 
 	if (dropdown.value === undefined) {
 		return "";
@@ -34,11 +34,13 @@ window.onload = () => {
 			phone: phoneInput.value,
 			address: addressInput.value,
 			type: getCheckboxValue(),
-			price: getDropdownValue()
+			price: getDropdownValue(),
 		};
 
 		lastOwner["place"] = jsonPlace;
 		owners[owners.length - 1] = lastOwner;
 		localStorage.setItem("owners", JSON.stringify(owners));
+
+		window.location.replace("../../login/login.html");
 	};
 };

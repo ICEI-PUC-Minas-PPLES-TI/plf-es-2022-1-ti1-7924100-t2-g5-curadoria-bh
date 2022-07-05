@@ -19,15 +19,17 @@ window.onload = () => {
 	const submitBtn = document.getElementById("submit-btn");
 
 	submitBtn.onclick = () => {
-		const jsonOwner = {
+		const jsonUser = {
 			name: nameInput.value,
 			email: emailInput.value,
 			cpf: cpfInput.value,
 			password: passwordInput.value,
 			gender: getRadioValue(),
 		};
-		users.push(jsonOwner);
+		users.push(jsonUser);
 
 		localStorage.setItem("users", JSON.stringify(users));
+
+		window.location.replace("../../login/login.html");
 	};
 };
