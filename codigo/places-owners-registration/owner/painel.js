@@ -2,7 +2,6 @@ window.onload = () => {
 	const db = JSON.parse(localStorage.getItem("owners"));
 	const cnpj = localStorage.getItem("logged");
 	const place = db.find(({ place }) => place.cnpj === cnpj).place;
-	console.log(place);
 
 	const placeName = document.getElementById("place-name");
 	placeName.innerText = place.placeName;
