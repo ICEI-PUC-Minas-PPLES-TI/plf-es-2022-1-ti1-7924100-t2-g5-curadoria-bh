@@ -6,12 +6,17 @@ window.onload = () => {
 		const email = document.getElementById("email-input").value;
 		const password = document.getElementById("password-input").value;
 		const isValid = users.some(
-			(owner) => owner.email === email && owner.password === password
+			(user) => user.email === email && user.password === password
 		);
 
 		if (!isValid) {
 			alert("Email ou senha incorreto(s)!");
 		} else {
+			const cpf = users.find(
+				(user) => user.email === email && user.password === password
+			).cpf;
+			console.log(cpf);
+			localStorage.setItem("logged", cpf);
 			window.location.replace("../feed.html");
 		}
 	};

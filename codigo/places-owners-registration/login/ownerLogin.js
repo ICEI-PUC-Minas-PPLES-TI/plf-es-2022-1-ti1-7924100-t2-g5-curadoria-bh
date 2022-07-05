@@ -12,6 +12,10 @@ window.onload = () => {
 		if (!isValid) {
 			alert("Email ou senha incorreto(s)!");
 		} else {
+			const cnpj = owners.find(
+				(owner) => owner.email === email && owner.password === password
+			).place.cnpj;
+			localStorage.setItem("logged", cnpj);
 			window.location.replace("../owner/painel.html");
 		}
 	};
