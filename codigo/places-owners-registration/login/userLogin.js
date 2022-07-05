@@ -17,7 +17,7 @@ window.onload = () => {
 			).cpf;
 			console.log(cpf);
 			localStorage.setItem("logged", cpf);
-			window.location.replace("../feed.html");
+			window.location.replace("../user/feed.html");
 		}
 	};
 };

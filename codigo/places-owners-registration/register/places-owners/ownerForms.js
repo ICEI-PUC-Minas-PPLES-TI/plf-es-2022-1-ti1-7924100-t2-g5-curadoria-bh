@@ -30,6 +30,6 @@ window.onload = () => {
 
 		localStorage.setItem("owners", JSON.stringify(owners));
 
-		window.location.replace("/register/places-owners/placeForms.html");
+		window.location.replace("./placeForms.html");
 	};
 };
