@@ -17,6 +17,14 @@ function getDropdownValue() {
 	return dropdown.value;
 }
 
+function setPlace(newPlace) {
+	const approvedPlaces = JSON.parse(localStorage.getItem("approvedPlaces"));
+	const id = 1 + approvedPlaces.length;
+	newPlace.id = id;
+	approvedPlaces.push(newPlace);
+	localStorage.setItem("approvedPlaces", JSON.stringify(approvedPlaces));
+}
+
 window.onload = () => {
 	const owners = JSON.parse(localStorage.getItem("owners"));
 	const lastOwner = owners[owners.length - 1];
@@ -26,6 +34,7 @@ window.onload = () => {
 	const cnpjInput = document.getElementById("cnpj-input");
 	const phoneInput = document.getElementById("phone-input");
 	const addressInput = document.getElementById("address-input");
+	const imgInput = document.getElementById("img-input");
 
 	submitPlaceBtn.onclick = () => {
 		const jsonPlace = {
@@ -35,7 +44,10 @@ window.onload = () => {
 			address: addressInput.value,
 			type: getCheckboxValue(),
 			price: getDropdownValue(),
+			img: imgInput.value,
 		};
+
+		setPlace(jsonPlace);
 
 		lastOwner["place"] = jsonPlace;
 		owners[owners.length - 1] = lastOwner;
