@@ -9,8 +9,8 @@ function getRadioValue() {
 }
 
 window.onload = () => {
-	let owners = localStorage.getItem("owners");
-	owners = owners ? JSON.parse(owners) : [];
+	let users = localStorage.getItem("users");
+	users = users ? JSON.parse(users) : [];
 
 	const nameInput = document.getElementById("name-input");
 	const emailInput = document.getElementById("email-input");
@@ -26,14 +26,8 @@ window.onload = () => {
 			password: passwordInput.value,
 			gender: getRadioValue(),
 		};
-		owners.push(jsonOwner);
+		users.push(jsonOwner);
 
-		localStorage.setItem("owners", JSON.stringify(owners));
-
-		console.log(owners);
-
-		window.location.replace(
-			"places-owners/placeForms.js"
-		);
+		localStorage.setItem("users", JSON.stringify(users));
 	};
 };
