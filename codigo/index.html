@@ -19,6 +19,8 @@
     <!-- Script do fontawsome -->
     <script src="https://kit.fontawesome.com/a108cab3b8.js" crossorigin="anonymous"></script>
     <title>BEAGAPP</title>
+
+    <script src="./index.js"></script>
 </head>
 
 <body>
@@ -32,14 +34,18 @@
                 <i class="fa-solid fa-house"></i>
                 <span class="mx-2">Home</span>
             </li>
-            <li href="#" class="nav-link">
-                <i class="fa-solid fa-arrow-right-to-bracket"></i>
-                <span class="mx-2">Login</span>
-            </li>
-            <li href="#" class="nav-link">
-                <i class="fa-solid fa-ticket"></i>
-                <span class="mx-2">Assine</span>
-            </li>
+            <a href="./login/login.html">
+              <li href="#" class="nav-link">
+                  <i class="fa-solid fa-arrow-right-to-bracket"></i>
+                  <span class="mx-2">Login</span>
+              </li>
+            </a>
+            <a href="./register/register.html">
+              <li href="#" class="nav-link">
+                  <i class="fa-solid fa-ticket"></i>
+                  <span class="mx-2">Assine</span>
+              </li>
+            </a>
         </ul>
 
         <div class="iconsocial">
@@ -67,7 +73,9 @@
                         <img src="imagens/banner1.jpg" class="img-banner1"alt="Foto de diversos pratos de comida em cima da mesa">
                         <div class="centralizar">Desfrute de experiências incríveis com os melhores descontos!</div>
                         <div class="centralizart2">BEAGAPP: Assine e já comece a economizar.</div>
-                        <div class="centralizarbtn"><button type="button" class="btn btncolor btn-sm"><b>Assine agora</b></button></div>
+                        <div class="centralizarbtn"><button type="button" class="btn btncolor btn-sm">
+                          <a href="./register/register.html"><b>Assine agora</b></a>
+                        </button></div>
                     </div>
                 </div>
             </section>
