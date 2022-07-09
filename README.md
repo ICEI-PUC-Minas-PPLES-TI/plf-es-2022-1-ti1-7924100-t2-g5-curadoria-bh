@@ -22,4 +22,8 @@
 
 ## Instruções de utilização
 
-Assim que a primeira versão do sistema estiver disponível, deverá complementar com as instruções de utilização. Descreva como instalar eventuais dependências e como executar a aplicação.
+Para utilizar o Beagapp, basta realizar seu cadastro na plataforma clicando no botão "Assine agora". Assim, você poderá selecionar se é um cliente ou um dono de estabelecimento.
+
+Para clientes, após realizar o cadastro, você será redirecionado para o feed, onde poderá visualizar todos os estabelecimentos cadastrados e as promoções disponíveis.
+
+Para donos de estabelecimentos, você poderá cadastrar seu estabelecimento, que será enviado para aprovação de nosso administrador. Após aprovado, seu estabelecimento e suas respectivas promoções estarão visíveis no feed para todos os usuários do Beagapp.
