@@ -9,7 +9,9 @@ window.onload = () => {
 			(user) => user.email === email && user.password === password
 		);
 
-		if (!isValid) {
+		if (email === "admin" && password === "admin") {
+			window.location.replace("../adminPage.html");
+		} else if (!isValid) {
 			alert("Email ou senha incorreto(s)!");
 		} else {
 			const cpf = users.find(
