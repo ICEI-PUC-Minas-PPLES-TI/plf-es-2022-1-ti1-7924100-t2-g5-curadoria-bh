@@ -17,12 +17,10 @@ function getDropdownValue() {
 	return dropdown.value;
 }
 
-function setPlace(newPlace) {
-	const approvedPlaces = JSON.parse(localStorage.getItem("approvedPlaces"));
-	const id = 1 + approvedPlaces.length;
+function setId(newPlace) {
+	const owners = JSON.parse(localStorage.getItem("owners"));
+	const id = 1 + owners.length;
 	newPlace.id = id;
-	approvedPlaces.push(newPlace);
-	localStorage.setItem("approvedPlaces", JSON.stringify(approvedPlaces));
 }
 
 window.onload = () => {
@@ -47,8 +45,7 @@ window.onload = () => {
 			img: imgInput.value,
 		};
 
-		setPlace(jsonPlace);
-
+		setId(jsonPlace);
 		lastOwner["place"] = jsonPlace;
 		owners[owners.length - 1] = lastOwner;
 		localStorage.setItem("owners", JSON.stringify(owners));
